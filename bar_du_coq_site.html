@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Le Bar du Coq – Restaurant italien, bar et pizzeria à Yverdon-les‑Bains</title>
+  <meta name="description" content="Restaurant italien, bar et pizzeria à Yverdon-les‑Bains : pizzas, pâtes et plats de saison. Découvrez notre menu, nos horaires et réservez votre table en ligne ou par téléphone.">
+  <style>
+    /*
+     * Palette : blanc cassé en arrière‑plan, texte anthracite et bordeaux en accents.
+     * Les variables facilitent l’ajustement du thème si besoin.
+     */
+    :root {
+      --bg: #f7f5f2;
+      --fg: #2d2d2d;
+      --muted: #6f6f6f;
+      --accent: #b8413f; /* bordeaux lumineux pour les boutons et titres */
+      --card-bg: #ffffff;
+      --line: #e5e3e0;
+      --radius: 16px;
+      --max-width: 1200px;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--fg);
+      background-color: var(--bg);
+      line-height: 1.6;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    h1, h2, h3 {
+      margin: 0 0 0.4em;
+      color: var(--fg);
+    }
+    /* Sticky header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 245, 242, 0.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(6px);
+    }
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .btn:hover {
+      background: #a23634;
+    }
+    /* Hero section */
+    .hero {
+      position: relative;
+      color: #fff;
+      padding: 80px 0;
+      background-size: cover;
+      background-position: center;
+      background-image: linear-gradient( rgba(0,0,0,0.5), rgba(0,0,0,0.5) ), url('https://img3.restaurantguru.com/r5b0-Le-Bar-du-Coq-pizza-2025-09-2.jpg');
+    }
+    .hero-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: clamp(16px, 2vw, 20px);
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+    /* Sections */
+    section {
+      padding: 60px 0;
+    }
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin-top: 8px;
+    }
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius) var(--radius) 0 0;
+      margin-bottom: 12px;
+    }
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .card p {
+      flex-grow: 1;
+      margin-bottom: 16px;
+    }
+    .fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Contact & hours */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .contact-item h4 {
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+    /* Map */
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: var(--radius);
+    }
+    footer {
+      background: var(--fg);
+      color: #fff;
+      padding: 20px 0;
+    }
+    footer a {
+      color: #f0e8e8;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fade {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">Le&nbsp;Bar&nbsp;du&nbsp;Coq</div>
+        <div class="nav-actions">
+          <a class="btn" href="tel:+41245243036">Appeler</a>
+          <a class="btn" href="https://bookings.zenchef.com" target="_blank" rel="noopener">Réserver</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero fade">
+    <div class="hero-content">
+      <h1>Restaurant italien, bar &amp; pizzeria</h1>
+      <p>Bienvenue au&nbsp;Bar&nbsp;du&nbsp;Coq, votre adresse conviviale au cœur d’Yverdon‑les‑Bains. Profitez d’une cuisine italienne authentique, de pizzas au feu de bois et d’une atmosphère chaleureuse – dès le matin pour un café jusqu’à tard dans la nuit pour un verre entre amis.</p>
+      <a class="btn" href="https://bookings.zenchef.com" target="_blank" rel="noopener">Réserver une table</a>
+    </div>
+  </section>
+
+  <section class="container fade">
+    <h2 class="section-title">À propos</h2>
+    <p>Situé près du Musée d'Yverdon, Le&nbsp;Bar&nbsp;du&nbsp;Coq est un lieu apprécié par les amateurs de cuisine italienne. On y vient savourer des spécialités telles que le filet américain, la parmo, la mozzarella et des pâtes maison. Selon les avis des clients, le parfait y est incontournable. L'établissement est également reconnu pour son service attentif et son ambiance exotique, avec une décoration soignée. Notre équipe se fera un plaisir de vous accueillir du petit déjeuner jusqu'à la dernière pizza du soir.</p>
+  </section>
+
+  <section class="container fade">
+    <h2 class="section-title">Nos spécialités</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <img src="https://img3.restaurantguru.com/r5b0-Le-Bar-du-Coq-pizza-2025-09-2.jpg" alt="Assortiment de pizza, charcuterie et antipasti">
+        <h3>Pizzas &amp; Antipasti</h3>
+        <p>Choisissez parmi nos pizzas classiques (Margherita, Napoli, Tonno, Capricciosa…) ou partagez un antipasti généreux avec bruschette et charcuterie. La pâte est pétrie chaque jour et cuite au feu de bois.</p>
+        <a class="btn" href="https://www.barducoq.ch/wp-content/uploads/2025/07/bar-du-coq-carte-menu-ete-2025.pdf" target="_blank" rel="noopener">Voir la carte</a>
+      </div>
+      <div class="card">
+        <img src="https://img.restaurantguru.com/r312-Le-Bar-du-Coq-food-2022-10-2.jpg" alt="Pâtes aux couleurs vives avec sauce crémeuse">
+        <h3>Pâtes classiques</h3>
+        <p>Dégustez nos spaghetti Aglio e olio, linguine alle vongole ou lasagnes à la bolognaise. Des recettes traditionnelles préparées avec des ingrédients de qualité.</p>
+        <a class="btn" href="https://www.barducoq.ch/wp-content/uploads/2025/07/bar-du-coq-carte-menu-ete-2025.pdf" target="_blank" rel="noopener">Voir la carte</a>
+      </div>
+      <div class="card">
+        <img src="https://img.restaurantguru.com/r9c9-Le-Bar-du-Coq-dishes-2022-10-2.jpg" alt="Pâtes à l'encre de seiche avec crevettes">
+        <h3>Pâtes créations</h3>
+        <p>Laissez-vous surprendre par nos créations originales comme la chitarra con polpettine ou les penne rigate alla pecorara, ainsi que notre risotto aux crevettes.</p>
+        <a class="btn" href="https://www.barducoq.ch/wp-content/uploads/2025/07/bar-du-coq-carte-menu-ete-2025.pdf" target="_blank" rel="noopener">Voir la carte</a>
+      </div>
+      <div class="card">
+        <img src="https://img.restaurantguru.com/rc75-Bar-du-Coq-dishes.jpg" alt="Plat principal avec légumes et viande">
+        <h3>Plats principaux</h3>
+        <p>Retrouvez nos spécialités telles que la tagliata classica, le pollo alla mugnaia avec épinards et pommes de terre, ou l’estate al mare. Disponibles le soir, week‑end et jours fériés.</p>
+        <a class="btn" href="https://www.barducoq.ch/wp-content/uploads/2025/07/bar-du-coq-carte-menu-ete-2025.pdf" target="_blank" rel="noopener">Voir la carte</a>
+      </div>
+      <div class="card">
+        <img src="https://img.restaurantguru.com/rc43-Le-Bar-du-Coq-interior-2024-08.jpg" alt="Salle du restaurant avec bar et décor vintage">
+        <h3>Ambiance &amp; Bar</h3>
+        <p>Notre bar propose une sélection de bières, vins et cocktails pour accompagner vos repas ou vos soirées. Profitez d'une atmosphère chaleureuse et d'un service amical.</p>
+        <a class="btn" href="https://bookings.zenchef.com" target="_blank" rel="noopener">Réserver</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container fade">
+    <h2 class="section-title">Galerie</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <img src="https://img.restaurantguru.com/rc43-Le-Bar-du-Coq-interior-2024-08.jpg" alt="Le bar et l'intérieur du restaurant">
+        <h3>Notre bar</h3>
+        <p>Vue sur le comptoir et la sélection de vins et spiritueux.</p>
+      </div>
+      <div class="card">
+        <img src="https://img3.restaurantguru.com/r5b0-Le-Bar-du-Coq-pizza-2025-09-2.jpg" alt="Pizzas et antipasti sur table à carreaux">
+        <h3>Table conviviale</h3>
+        <p>Une table dressée pour partager un repas entre amis ou en famille.</p>
+      </div>
+      <div class="card">
+        <img src="https://img.restaurantguru.com/rc75-Bar-du-Coq-dishes.jpg" alt="Plat principal coloré">
+        <h3>Plats gourmands</h3>
+        <p>Des assiettes généreuses et colorées mettant en avant les produits frais.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container fade">
+    <h2 class="section-title">Informations pratiques</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <h4>Adresse</h4>
+        <p>Rue&nbsp;du&nbsp;Valentin&nbsp;2<br>1400&nbsp;Yverdon‑les‑Bains</p>
+      </div>
+      <div class="contact-item">
+        <h4>Téléphone</h4>
+        <p><a href="tel:+41245243036">+41&nbsp;24&nbsp;524&nbsp;30&nbsp;36</a></p>
+        <h4>Email</h4>
+        <p><a href="mailto:contact@barducoq.ch">contact@barducoq.ch</a></p>
+      </div>
+      <div class="contact-item">
+        <h4>Horaires du restaurant</h4>
+        <p>Restauration 7/7, pizza et pasta jusqu’à 22:00</p>
+        <h4>Horaires du bar (Rez)</h4>
+        <p>Lun‑mar‑mer&nbsp;06:00‑23:00<br>Jeu&nbsp;06:00‑01:00<br>Ven&nbsp;06:00‑02:00<br>Sam&nbsp;07:00‑02:00<br>Dim&nbsp;07:00‑23:00</p>
+      </div>
+    </div>
+    <p style="margin-top: 16px;">Consultez aussi notre <a href="https://www.barducoq.ch/wp-content/uploads/2025/07/bar-du-coq-carte-menu-ete-2025.pdf" target="_blank" rel="noopener">carte des mets</a> et notre <a href="https://www.barducoq.ch/wp-content/uploads/2025/07/bar-du-coq-carte-menu-ete-2025.pdf" target="_blank" rel="noopener">carte des vins</a>. Pour réserver une table, utilisez le bouton ci‑dessus ou appelez‑nous directement.</p>
+  </section>
+
+  <section class="container fade">
+    <h2 class="section-title">Localisation</h2>
+    <div class="map-container">
+      <iframe src="https://maps.google.com/maps?q=Rue%20du%20Valentin%202%2C%201400%20Yverdon-les-Bains&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display: flex; flex-direction: column; gap: 8px;">
+      <div>© <span id="year"></span> Le&nbsp;Bar&nbsp;du&nbsp;Coq – Yverdon-les‑Bains. Tous droits réservés.</div>
+      <div>Site réalisé dans un but de démonstration.</div>
+    </div>
+  </footer>
+  <script>
+    // Mettre à jour l’année automatiquement
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Fade‑in effect with IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
